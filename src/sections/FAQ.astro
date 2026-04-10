@@ -1,0 +1,65 @@
+---
+const faqs = [
+  {
+    question: "How long does a program take?",
+    answer: "It depends on the experience tier. Connection experiences are half-day, Transformation is a full day, and Evolution spans 2–4 days. All programs are tailored to your schedule and objectives.",
+  },
+  {
+    question: "Do we need any special experience or fitness level?",
+    answer: "No prior experience is needed. Evox programs are designed to be inclusive and adaptable. Our coaches ensure every participant feels supported regardless of fitness level.",
+  },
+  {
+    question: "Can programs be customized for our team?",
+    answer: "Absolutely. Every program is co-created with you — we adapt activities, intensity, focus areas, and logistics to match your team's needs, culture, and objectives.",
+  },
+  {
+    question: "Is our data and feedback private?",
+    answer: "Yes. All assessment data and feedback collected during our programs is confidential and only shared in aggregated, anonymized form unless otherwise agreed.",
+  },
+  {
+    question: "What's included in the price?",
+    answer: "All logistics — transport, food, lodging (where applicable), materials, and professional coaching are fully handled by Evox. You show up, we take care of the rest.",
+  },
+];
+---
+
+<section id="faq" class="bg-black py-24 lg:py-32">
+  <div class="mx-auto max-w-[1400px] px-6 lg:px-12">
+
+    <div class="grid grid-cols-1 gap-16 lg:grid-cols-[1fr_1.4fr] lg:items-start">
+
+      <div>
+        <span class="section-badge">FAQ</span>
+        <h2
+          data-reveal
+          class="mt-6 text-[36px] font-bold leading-[1.1] tracking-[-0.5px] text-white sm:text-[48px]"
+        >
+          Frequently Asked Questions
+        </h2>
+        <p class="mt-4 text-[16px] leading-[1.6] text-white/55">
+          Have more questions? <a href="#contact" class="text-[#f37443] hover:underline">Reach out to us.</a>
+        </p>
+      </div>
+
+      <div class="space-y-3">
+        {faqs.map((faq) => (
+          <details class="faq-item group rounded-2xl border border-white/10 bg-[#161616]">
+            <summary class="flex cursor-pointer items-center justify-between gap-4 px-6 py-5">
+              <span class="text-[16px] font-semibold text-white">{faq.question}</span>
+              <span class="faq-icon flex h-7 w-7 shrink-0 items-center justify-center rounded-full border border-white/15 text-white/60">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M12 5v14M5 12h14"/>
+                </svg>
+              </span>
+            </summary>
+            <div class="px-6 pb-5">
+              <p class="text-[15px] leading-[1.7] text-white/60">{faq.answer}</p>
+            </div>
+          </details>
+        ))}
+      </div>
+
+    </div>
+
+  </div>
+</section>

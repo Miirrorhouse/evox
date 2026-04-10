@@ -1,0 +1,85 @@
+---
+const navLinks = [
+  { label: "How It Works", href: "#how-it-works" },
+  { label: "Who It's For", href: "#who-its-for" },
+  { label: "Pricing", href: "#pricing" },
+  { label: "FAQ", href: "#faq" },
+];
+---
+
+<header
+  id="site-header"
+  class="pointer-events-none fixed inset-x-0 top-0 z-50 pt-4 transition-opacity duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] will-change-[opacity] lg:pt-5"
+>
+  <div class="pointer-events-none mx-auto w-full max-w-[1400px] px-6 lg:px-12">
+    <nav
+      class="pointer-events-auto flex w-full items-center justify-between gap-4 rounded-full border border-white/10 bg-black/70 py-2.5 pl-5 pr-2.5 backdrop-blur-md sm:pl-6"
+      aria-label="Primary"
+    >
+      <a href="/" class="flex shrink-0 items-center py-0.5">
+        <img src="/images/Asset-1.svg" alt="Evox" class="h-7 w-auto brightness-0 invert sm:h-8" />
+      </a>
+
+      <div class="hidden items-center gap-7 md:flex">
+        {navLinks.map((link) => (
+          <a
+            href={link.href}
+            class="text-[14px] font-medium text-white/70 transition-colors hover:text-white"
+          >
+            {link.label}
+          </a>
+        ))}
+      </div>
+
+      <a
+        href="#pricing"
+        class="inline-flex shrink-0 items-center justify-center rounded-full bg-[#f37443] px-6 py-2 text-[14px] font-bold leading-none text-white transition-all duration-[250ms] [transition-timing-function:cubic-bezier(0.22,1,0.36,1)] hover:bg-[#ed4c22] active:scale-[0.98]"
+      >
+        Get Started
+      </a>
+    </nav>
+  </div>
+</header>
+
+<script>
+  let removeScrollListener: (() => void) | null = null;
+
+  function setupHeaderScrollHide() {
+    removeScrollListener?.();
+    removeScrollListener = null;
+
+    const header = document.getElementById("site-header");
+    if (!header) return;
+
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    let lastScrollY = window.scrollY;
+    let ticking = false;
+
+    function onScrollFrame() {
+      ticking = false;
+      const y = Math.max(0, window.scrollY);
+      if (y < 48) {
+        header!.removeAttribute("data-nav-concealed");
+      } else if (y > lastScrollY + 8) {
+        header!.setAttribute("data-nav-concealed", "true");
+      } else if (y < lastScrollY - 8) {
+        header!.removeAttribute("data-nav-concealed");
+      }
+      lastScrollY = y;
+    }
+
+    function onScroll() {
+      if (!ticking) {
+        requestAnimationFrame(onScrollFrame);
+        ticking = true;
+      }
+    }
+
+    window.addEventListener("scroll", onScroll, { passive: true });
+    removeScrollListener = () => window.removeEventListener("scroll", onScroll);
+  }
+
+  setupHeaderScrollHide();
+  document.addEventListener("astro:page-load", setupHeaderScrollHide);
+</script>

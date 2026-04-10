@@ -1,0 +1,41 @@
+---
+const marqueeImages = [
+  { src: "/images/Athletic-Woman-Close-Up_1Athletic-Woman-Close-Up.webp", alt: "Athletic woman close up" },
+  { src: "/images/nastuh-abootalebi-yWwob8kwOCk-unsplash_1nastuh-abootalebi-yWwob8kwOCk-unsplash.webp", alt: "Wellness activity" },
+  { src: "/images/Woman-with-Tennis-Racket_1Woman-with-Tennis-Racket.webp", alt: "Woman with tennis racket" },
+  { src: "/images/Athletic-Man-Outdoors_1Athletic-Man-Outdoors.webp", alt: "Athletic man outdoors" },
+];
+---
+
+<section id="about" class="overflow-hidden bg-black py-24 lg:py-32">
+  <div class="mx-auto max-w-[1400px] px-6 lg:px-12">
+    <div class="mx-auto max-w-3xl text-center">
+      <span class="section-badge">About Evox</span>
+      <h2
+        data-reveal
+        class="mt-6 text-[36px] font-bold leading-[1.1] tracking-[-0.5px] text-white sm:text-[48px] lg:text-[56px]"
+      >
+        Real Transformation Always<br class="hidden sm:block" /> Starts from Within
+      </h2>
+      <p data-reveal class="mt-6 text-[17px] leading-[1.7] text-white/60">
+        At Evox we design experiences that move people. We blend adventure and wellness to reconnect teams and individuals with their bodies, their essence, and nature. Through hiking, paddle and kayak outings, via ferrata, retreats, fitness, physiotherapy, and mindfulness, we turn challenge into clarity, trust, and lasting growth. Whether you need a half-day reset or a multi-day evolution, our programs are tailor-made and fully supported end to end.
+      </p>
+    </div>
+  </div>
+
+  <!-- Marquee -->
+  <div class="relative mt-16 overflow-hidden" aria-hidden="true">
+    <div class="marquee-track flex gap-4" style="width: max-content;">
+      {[...marqueeImages, ...marqueeImages].map((img) => (
+        <div class="h-[280px] w-[400px] shrink-0 overflow-hidden rounded-2xl">
+          <img
+            src={img.src}
+            alt={img.alt}
+            class="h-full w-full object-cover"
+            loading="lazy"
+          />
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

@@ -1,0 +1,77 @@
+---
+const packages = [
+  {
+    name: "Connection",
+    description: "Half-day experience — snacks, group dynamics, activities like hiking & paddle surf.",
+    featured: false,
+  },
+  {
+    name: "Evolution",
+    description: "2–4 day retreat — full transport, lodging, food, fitness & mindfulness workshops, adventure activities.",
+    featured: true,
+    badge: "Most Popular",
+  },
+  {
+    name: "Transformation",
+    description: "Full-day experience — meals, transfers, group dynamics, activities like via ferrata, kayak & rafting.",
+    featured: false,
+  },
+];
+---
+
+<section id="pricing" class="bg-[#0a0a0a] py-24 lg:py-32">
+  <div class="mx-auto max-w-[1400px] px-6 lg:px-12">
+
+    <div class="text-center">
+      <span class="section-badge">Pricing Plans</span>
+      <h2
+        data-reveal
+        class="mt-6 text-[36px] font-bold leading-[1.1] tracking-[-0.5px] text-white sm:text-[48px]"
+      >
+        Start Your Journey
+      </h2>
+      <p data-reveal class="mx-auto mt-4 max-w-lg text-[17px] leading-[1.6] text-white/55">
+        Packages start at $5k. Every program is fully custom — reach out and we'll build the right experience for your team.
+      </p>
+    </div>
+
+    <div data-stagger class="mt-14 grid grid-cols-1 gap-6 sm:grid-cols-3">
+      {packages.map((pkg) => (
+        <div
+          class={`relative flex flex-col rounded-2xl border p-8 transition-transform duration-300 hover:-translate-y-1 ${
+            pkg.featured
+              ? "border-[#f37443]/50 bg-[#1a0e0a]"
+              : "border-white/10 bg-[#161616]"
+          }`}
+        >
+          {pkg.featured && pkg.badge && (
+            <span class="absolute -top-3.5 left-1/2 -translate-x-1/2 rounded-full bg-[#f37443] px-4 py-1 text-[11px] font-bold uppercase tracking-[1.5px] text-white">
+              {pkg.badge}
+            </span>
+          )}
+
+          <h3 class="text-[22px] font-bold text-white">{pkg.name}</h3>
+          <p class="mt-3 text-[14px] leading-[1.6] text-white/55">{pkg.description}</p>
+
+          <div class="mt-6 border-t border-white/10 pt-6">
+            <p class="text-[13px] font-semibold uppercase tracking-[1.5px] text-white/40">All Plans Completely Custom</p>
+          </div>
+
+          <div class="mt-6">
+            <a
+              href="#contact"
+              class={`inline-flex w-full items-center justify-center rounded-full py-3 text-[15px] font-bold transition-all duration-[250ms] [transition-timing-function:cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-px active:scale-[0.98] ${
+                pkg.featured
+                  ? "bg-[#f37443] text-white hover:bg-[#ed4c22]"
+                  : "border border-white/20 text-white hover:border-white/40 hover:bg-white/5"
+              }`}
+            >
+              Get Started
+            </a>
+          </div>
+        </div>
+      ))}
+    </div>
+
+  </div>
+</section>
