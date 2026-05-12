@@ -4,16 +4,19 @@ const cards = [
     title: "Companies & Organizations",
     description: "For startups to enterprises, coworkings, corporate HQs — offsites, culture & well-being programs.",
     image: "/images/Cyclists-Determination_1Cyclists Determination.webp",
+    ikey: "whoItsFor.cards.0",
   },
   {
     title: "Educational Institutions",
     description: "For universities, business schools, high schools, academies — orientation camps, leadership & resilience days.",
     image: "/images/Focused-Athlete-Outdoors_1Focused Athlete Outdoors.webp",
+    ikey: "whoItsFor.cards.1",
   },
   {
     title: "Public & Non-Profit",
     description: "For municipalities, NGOs, community orgs — team cohesion, burnout prevention, community wellness.",
     image: "/images/Dynamic-Athleticism-in-Motion_1Dynamic Athleticism in Motion.webp",
+    ikey: "whoItsFor.cards.2",
   },
 ];
 ---
@@ -22,9 +25,10 @@ const cards = [
   <div class="mx-auto max-w-[1400px] px-6 lg:px-12">
 
     <div class="text-center">
-      <span class="section-badge">Who It's For</span>
+      <span data-i18n="whoItsFor.badge" class="section-badge">Who It's For</span>
       <h2
         data-reveal
+        data-i18n="whoItsFor.title"
         class="mt-6 text-[36px] font-bold leading-[1.1] tracking-[-0.5px] text-white sm:text-[48px]"
       >
         Your Team Matters to Us
@@ -44,8 +48,8 @@ const cards = [
           </div>
           <div class="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent"></div>
           <div class="absolute bottom-0 left-0 right-0 p-6">
-            <h3 class="text-[20px] font-bold leading-tight text-white">{card.title}</h3>
-            <p class="mt-2 text-[14px] leading-[1.5] text-white/65">{card.description}</p>
+            <h3 data-i18n={`${card.ikey}.title`} class="text-[20px] font-bold leading-tight text-white">{card.title}</h3>
+            <p data-i18n={`${card.ikey}.desc`} class="mt-2 text-[14px] leading-[1.5] text-white/65">{card.description}</p>
           </div>
         </div>
       ))}

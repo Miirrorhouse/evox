@@ -1,15 +1,15 @@
 ---
 const navLinks = [
-  { label: "How It Works", href: "#how-it-works" },
-  { label: "Who It's For", href: "#who-its-for" },
-  { label: "Pricing", href: "#pricing" },
-  { label: "FAQ", href: "#faq" },
+  { label: "How It Works", href: "#how-it-works", key: "footer.howItWorks" },
+  { label: "Who It's For", href: "#who-its-for",  key: "footer.whoItsFor" },
+  { label: "Pricing",      href: "#pricing",       key: "footer.pricing" },
+  { label: "FAQ",          href: "#faq",            key: "footer.faq" },
 ];
 
 const legalLinks = [
-  { label: "Privacy Policy", href: "#" },
-  { label: "Terms of Service", href: "#" },
-  { label: "Refund Policy", href: "#" },
+  { label: "Privacy Policy",   href: "#", key: "footer.privacy" },
+  { label: "Terms of Service", href: "#", key: "footer.terms" },
+  { label: "Refund Policy",    href: "#", key: "footer.refund" },
 ];
 
 const socialLinks = [
@@ -53,7 +53,7 @@ const socialLinks = [
           alt="Evox"
           class="h-8 w-auto brightness-0 invert"
         />
-        <p class="text-[15px] leading-relaxed text-white/60">
+        <p data-i18n="footer.tagline" class="text-[15px] leading-relaxed text-white/60">
           Built by athletes, powered by science.
         </p>
         <div class="flex flex-wrap gap-4 pt-1">
@@ -75,11 +75,11 @@ const socialLinks = [
 
       <!-- Nav -->
       <div>
-        <h3 class="text-[11px] font-bold uppercase tracking-[2px] text-white/40">Navigation</h3>
+        <h3 data-i18n="footer.navHeading" class="text-[11px] font-bold uppercase tracking-[2px] text-white/40">Navigation</h3>
         <ul class="mt-4 space-y-3">
           {navLinks.map((link) => (
             <li>
-              <a href={link.href} class="text-[14px] text-white/60 transition-colors hover:text-white">
+              <a href={link.href} data-i18n={link.key} class="text-[14px] text-white/60 transition-colors hover:text-white">
                 {link.label}
               </a>
             </li>
@@ -89,11 +89,11 @@ const socialLinks = [
 
       <!-- Legal -->
       <div>
-        <h3 class="text-[11px] font-bold uppercase tracking-[2px] text-white/40">Legal</h3>
+        <h3 data-i18n="footer.legalHeading" class="text-[11px] font-bold uppercase tracking-[2px] text-white/40">Legal</h3>
         <ul class="mt-4 space-y-3">
           {legalLinks.map((link) => (
             <li>
-              <a href={link.href} class="text-[14px] text-white/60 transition-colors hover:text-white">
+              <a href={link.href} data-i18n={link.key} class="text-[14px] text-white/60 transition-colors hover:text-white">
                 {link.label}
               </a>
             </li>
@@ -103,7 +103,7 @@ const socialLinks = [
 
       <!-- Contact -->
       <div>
-        <h3 class="text-[11px] font-bold uppercase tracking-[2px] text-white/40">Contact</h3>
+        <h3 data-i18n="footer.contactHeading" class="text-[11px] font-bold uppercase tracking-[2px] text-white/40">Contact</h3>
         <ul class="mt-4 space-y-3">
           <li>
             <a href="mailto:hello@evox.com" class="text-[14px] text-white/60 transition-colors hover:text-white">
@@ -115,13 +115,13 @@ const socialLinks = [
     </div>
 
     <div class="mt-12 flex flex-col items-start justify-between gap-4 border-t border-white/10 pt-6 sm:flex-row sm:items-center">
-      <p class="text-[13px] text-white/40">&copy; 2025 Evox. All rights reserved.</p>
+      <p data-i18n="footer.copyright" class="text-[13px] text-white/40">&copy; 2025 Evox. All rights reserved.</p>
       <a
         href="#hero"
         class="flex items-center gap-2 text-[13px] text-white/40 transition-colors hover:text-white"
         aria-label="Back to top"
       >
-        Back to top
+        <span data-i18n="footer.backToTop">Back to top</span>
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
           <path d="M12 19V5M5 12l7-7 7 7"/>
         </svg>

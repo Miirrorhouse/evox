@@ -1,36 +1,26 @@
 ---
 const packages = [
-  {
-    name: "Connection",
-    description: "Half-day experience — snacks, group dynamics, activities like hiking & paddle surf.",
-    featured: false,
-  },
-  {
-    name: "Evolution",
-    description: "2–4 day retreat — full transport, lodging, food, fitness & mindfulness workshops, adventure activities.",
-    featured: true,
-    badge: "Most Popular",
-  },
-  {
-    name: "Transformation",
-    description: "Full-day experience — meals, transfers, group dynamics, activities like via ferrata, kayak & rafting.",
-    featured: false,
-  },
+  { name: "Connection",     description: "Half-day experience — snacks, group dynamics, activities like hiking & paddle surf.", featured: false, ikey: "pricing.packages.0" },
+  { name: "Evolution",      description: "2–4 day retreat — full transport, lodging, food, fitness & mindfulness workshops, adventure activities.", featured: true, ikey: "pricing.packages.1" },
+  { name: "Transformation", description: "Full-day experience — meals, transfers, group dynamics, activities like via ferrata, kayak & rafting.", featured: false, ikey: "pricing.packages.2" },
 ];
+
+const services = ["Outdoor Experiences", "Team Training", "Team Mindfulness", "Retreats"];
 ---
 
 <section id="pricing" class="bg-[#0a0a0a] py-24 lg:py-32">
   <div class="mx-auto max-w-[1400px] px-6 lg:px-12">
 
     <div class="text-center">
-      <span class="section-badge">Pricing Plans</span>
+      <span data-i18n="pricing.badge" class="section-badge">Pricing Plans</span>
       <h2
         data-reveal
+        data-i18n="pricing.title"
         class="mt-6 text-[36px] font-bold leading-[1.1] tracking-[-0.5px] text-white sm:text-[48px]"
       >
         Start Your Journey
       </h2>
-      <p data-reveal class="mx-auto mt-4 max-w-lg text-[17px] leading-[1.6] text-white/55">
+      <p data-reveal data-i18n="pricing.subtitle" class="mx-auto mt-4 max-w-lg text-[17px] leading-[1.6] text-white/55">
         Packages start at $5k. Every program is fully custom — reach out and we'll build the right experience for your team.
       </p>
     </div>
@@ -44,17 +34,17 @@ const packages = [
               : "border-white/10 bg-[#161616]"
           }`}
         >
-          {pkg.featured && pkg.badge && (
-            <span class="absolute -top-3.5 left-1/2 -translate-x-1/2 rounded-full bg-[#f37443] px-4 py-1 text-[11px] font-bold uppercase tracking-[1.5px] text-white">
-              {pkg.badge}
+          {pkg.featured && (
+            <span data-i18n="pricing.popularBadge" class="absolute -top-3.5 left-1/2 -translate-x-1/2 rounded-full bg-[#f37443] px-4 py-1 text-[11px] font-bold uppercase tracking-[1.5px] text-white">
+              Most Popular
             </span>
           )}
 
-          <h3 class="text-[22px] font-bold text-white">{pkg.name}</h3>
-          <p class="mt-3 text-[14px] leading-[1.6] text-white/55">{pkg.description}</p>
+          <h3 data-i18n={`${pkg.ikey}.name`} class="text-[22px] font-bold text-white">{pkg.name}</h3>
+          <p data-i18n={`${pkg.ikey}.desc`} class="mt-3 text-[14px] leading-[1.6] text-white/55">{pkg.description}</p>
 
           <div class="mt-6 border-t border-white/10 pt-6">
-            <p class="text-[13px] font-semibold uppercase tracking-[1.5px] text-white/40">All Plans Completely Custom</p>
+            <p data-i18n="pricing.allCustom" class="text-[13px] font-semibold uppercase tracking-[1.5px] text-white/40">All Plans Completely Custom</p>
           </div>
 
           <div class="mt-6">
@@ -66,7 +56,7 @@ const packages = [
                   : "border border-white/20 text-white hover:border-white/40 hover:bg-white/5"
               }`}
             >
-              Get Started
+              <span data-i18n="pricing.getStarted">Get Started</span>
             </a>
           </div>
         </div>
@@ -76,8 +66,8 @@ const packages = [
     <!-- Contact Form -->
     <div id="contact-form" data-reveal class="mt-20 rounded-2xl border border-white/10 bg-[#161616] p-8 lg:p-12">
       <div class="mb-10 text-center">
-        <h3 class="text-[28px] font-bold text-white sm:text-[34px]">Get a Custom Quote</h3>
-        <p class="mx-auto mt-3 max-w-md text-[15px] leading-[1.6] text-white/50">
+        <h3 data-i18n="pricing.form.title" class="text-[28px] font-bold text-white sm:text-[34px]">Get a Custom Quote</h3>
+        <p data-i18n="pricing.form.subtitle" class="mx-auto mt-3 max-w-md text-[15px] leading-[1.6] text-white/50">
           Tell us about your team and we'll craft the perfect experience for you.
         </p>
       </div>
@@ -86,30 +76,31 @@ const packages = [
         <!-- Row 1: Name + Company Size -->
         <div class="grid grid-cols-1 gap-6 sm:grid-cols-2">
           <div class="flex flex-col gap-2">
-            <label for="form-name" class="text-[13px] font-semibold uppercase tracking-[1.2px] text-white/40">Full Name</label>
+            <label for="form-name" data-i18n="pricing.form.name" class="text-[13px] font-semibold uppercase tracking-[1.2px] text-white/40">Full Name</label>
             <input
               id="form-name"
               type="text"
               name="name"
               required
+              data-i18n-placeholder="pricing.form.namePlaceholder"
               placeholder="Jane Smith"
               class="rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-[15px] text-white placeholder:text-white/25 outline-none transition-colors duration-200 focus:border-[#f37443]/60 focus:bg-white/8"
             />
           </div>
           <div class="flex flex-col gap-2">
-            <label for="form-company-size" class="text-[13px] font-semibold uppercase tracking-[1.2px] text-white/40">Company Size</label>
+            <label for="form-company-size" data-i18n="pricing.form.companySize" class="text-[13px] font-semibold uppercase tracking-[1.2px] text-white/40">Company Size</label>
             <select
               id="form-company-size"
               name="company_size"
               required
               class="rounded-xl border border-white/10 bg-[#161616] px-4 py-3 text-[15px] text-white outline-none transition-colors duration-200 focus:border-[#f37443]/60 appearance-none cursor-pointer"
             >
-              <option value="" disabled selected class="text-white/25">Select team size</option>
-              <option value="1-10">1–10 employees</option>
-              <option value="11-50">11–50 employees</option>
-              <option value="51-200">51–200 employees</option>
-              <option value="201-500">201–500 employees</option>
-              <option value="500+">500+ employees</option>
+              <option value="" disabled selected data-i18n-option="pricing.form.companySizePlaceholder">Select team size</option>
+              <option value="1-10"   data-i18n-option="pricing.form.companySizeOptions.0">1–10 employees</option>
+              <option value="11-50"  data-i18n-option="pricing.form.companySizeOptions.1">11–50 employees</option>
+              <option value="51-200" data-i18n-option="pricing.form.companySizeOptions.2">51–200 employees</option>
+              <option value="201-500" data-i18n-option="pricing.form.companySizeOptions.3">201–500 employees</option>
+              <option value="500+"   data-i18n-option="pricing.form.companySizeOptions.4">500+ employees</option>
             </select>
           </div>
         </div>
@@ -117,22 +108,24 @@ const packages = [
         <!-- Row 2: Email + Phone -->
         <div class="grid grid-cols-1 gap-6 sm:grid-cols-2">
           <div class="flex flex-col gap-2">
-            <label for="form-email" class="text-[13px] font-semibold uppercase tracking-[1.2px] text-white/40">Email Address</label>
+            <label for="form-email" data-i18n="pricing.form.email" class="text-[13px] font-semibold uppercase tracking-[1.2px] text-white/40">Email Address</label>
             <input
               id="form-email"
               type="email"
               name="email"
               required
+              data-i18n-placeholder="pricing.form.emailPlaceholder"
               placeholder="jane@company.com"
               class="rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-[15px] text-white placeholder:text-white/25 outline-none transition-colors duration-200 focus:border-[#f37443]/60 focus:bg-white/8"
             />
           </div>
           <div class="flex flex-col gap-2">
-            <label for="form-phone" class="text-[13px] font-semibold uppercase tracking-[1.2px] text-white/40">Phone Number</label>
+            <label for="form-phone" data-i18n="pricing.form.phone" class="text-[13px] font-semibold uppercase tracking-[1.2px] text-white/40">Phone Number</label>
             <input
               id="form-phone"
               type="tel"
               name="phone"
+              data-i18n-placeholder="pricing.form.phonePlaceholder"
               placeholder="+1 (555) 000-0000"
               class="rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-[15px] text-white placeholder:text-white/25 outline-none transition-colors duration-200 focus:border-[#f37443]/60 focus:bg-white/8"
             />
@@ -141,9 +134,9 @@ const packages = [
 
         <!-- Service Selection -->
         <div class="flex flex-col gap-3">
-          <span class="text-[13px] font-semibold uppercase tracking-[1.2px] text-white/40">I'm Interested In</span>
+          <span data-i18n="pricing.form.interested" class="text-[13px] font-semibold uppercase tracking-[1.2px] text-white/40">I'm Interested In</span>
           <div class="grid grid-cols-2 gap-3 sm:grid-cols-4">
-            {["Outdoor Experiences", "Team Training", "Team Mindfulness", "Retreats"].map((service) => (
+            {services.map((service, i) => (
               <label class="group flex cursor-pointer items-center gap-3 rounded-xl border border-white/10 bg-white/5 px-4 py-3 transition-colors duration-200 has-[:checked]:border-[#f37443]/60 has-[:checked]:bg-[#f37443]/10">
                 <input
                   type="checkbox"
@@ -156,7 +149,7 @@ const packages = [
                     <polyline points="20 6 9 17 4 12"/>
                   </svg>
                 </span>
-                <span class="text-[13px] font-medium text-white/70 transition-colors duration-200 group-has-[:checked]:text-white">{service}</span>
+                <span data-i18n={`pricing.form.services.${i}`} class="text-[13px] font-medium text-white/70 transition-colors duration-200 group-has-[:checked]:text-white">{service}</span>
               </label>
             ))}
           </div>
@@ -164,11 +157,16 @@ const packages = [
 
         <!-- Message -->
         <div class="flex flex-col gap-2">
-          <label for="form-message" class="text-[13px] font-semibold uppercase tracking-[1.2px] text-white/40">Message <span class="normal-case tracking-normal text-white/25">(optional)</span></label>
+          <label for="form-message" class="text-[13px] font-semibold uppercase tracking-[1.2px] text-white/40">
+            <span data-i18n="pricing.form.message">Message</span>
+            {" "}
+            <span data-i18n="pricing.form.messageOptional" class="normal-case tracking-normal text-white/25">(optional)</span>
+          </label>
           <textarea
             id="form-message"
             name="message"
             rows="4"
+            data-i18n-placeholder="pricing.form.messagePlaceholder"
             placeholder="Tell us about your team's goals, preferred dates, or any questions you have…"
             class="resize-none rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-[15px] text-white placeholder:text-white/25 outline-none transition-colors duration-200 focus:border-[#f37443]/60 focus:bg-white/8"
           ></textarea>
@@ -180,7 +178,7 @@ const packages = [
             type="submit"
             class="inline-flex items-center gap-2.5 rounded-full bg-[#f37443] px-10 py-4 text-[15px] font-bold text-white transition-all duration-[250ms] [transition-timing-function:cubic-bezier(0.22,1,0.36,1)] hover:bg-[#ed4c22] hover:-translate-y-px active:translate-y-0 active:scale-[0.98]"
           >
-            Send My Inquiry
+            <span data-i18n="pricing.form.submit">Send My Inquiry</span>
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
               <path d="M5 12h14M12 5l7 7-7 7"/>
             </svg>

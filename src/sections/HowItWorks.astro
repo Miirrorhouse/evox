@@ -5,24 +5,28 @@ const wellnessCards = [
     description: "group classes, personal training, corporate fitness programs",
     icon: "/images/brain.svg",
     image: "/images/Focused-Strength-in-the-Gym_1Focused Strength in the Gym.webp",
+    ikey: "howItWorks.wellness.0",
   },
   {
     title: "Physiotherapy",
     description: "massages, rehab, prevention, corporate sessions",
     icon: "/images/lightning.svg",
     image: "/images/Focused-Basketball-Player_1Focused Basketball Player.webp",
+    ikey: "howItWorks.wellness.1",
   },
   {
     title: "Mindfulness",
     description: "meditation, breathwork, stress-reduction workshops",
     icon: "/images/chart-line-up.svg",
     image: "/images/Smiling-Athletic-Woman_1Smiling Athletic Woman.webp",
+    ikey: "howItWorks.wellness.2",
   },
   {
     title: "Active Breaks",
     description: "short movement & ergonomic pauses in workplace",
     icon: "/images/shield.svg",
     image: "/images/Gymnast-Mid-Performance_1Gymnast Mid-Performance.webp",
+    ikey: "howItWorks.wellness.3",
   },
 ];
 
@@ -31,21 +35,25 @@ const steps = [
     number: "01",
     title: "Transformative Experiences",
     description: "We don't just run activities. We design powerful experiences that leave a lasting impact and transform how teams connect, communicate, and grow together.",
+    ikey: "howItWorks.steps.0",
   },
   {
     number: "02",
     title: "Challenges that Align Teams",
     description: "Through nature, movement, and shared challenges, we help teams strengthen trust, collaboration, and alignment toward common goals.",
+    ikey: "howItWorks.steps.1",
   },
   {
     number: "03",
     title: "Well-being as the Key to Performance",
     description: "Our approach integrates fitness, physiotherapy, and mindfulness, helping people live, work, and lead at their best potential.",
+    ikey: "howItWorks.steps.2",
   },
   {
     number: "04",
     title: "Tailor-Made Programs",
     description: "Every company and team is unique. We co-create personalized programs that adapt to your needs, culture, and objectives.",
+    ikey: "howItWorks.steps.3",
   },
 ];
 ---
@@ -55,9 +63,10 @@ const steps = [
 
     <!-- Wellness Options -->
     <div class="mb-24">
-      <span class="inline-block rounded-full border border-[#f37443] px-4 py-1.5 text-[11px] font-semibold uppercase tracking-[3px] text-[#f37443]">Evox Wellness</span>
+      <span data-i18n="howItWorks.wellnessBadge" class="inline-block rounded-full border border-[#f37443] px-4 py-1.5 text-[11px] font-semibold uppercase tracking-[3px] text-[#f37443]">Evox Wellness</span>
       <h2
         data-reveal
+        data-i18n="howItWorks.wellnessTitle"
         class="mt-5 text-[36px] font-normal leading-[1.2] tracking-[-0.5px] text-[#111] sm:text-[48px]"
       >
         Explore Our Wellness Options
@@ -66,13 +75,10 @@ const steps = [
       <div data-stagger class="mt-12 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
         {wellnessCards.map((card) => (
           <div class="wellness-card group relative flex flex-col justify-between overflow-hidden rounded-2xl border border-[#e8e6e3] bg-white p-6 min-h-[280px]">
-            <!-- Hover image -->
             <div class="absolute inset-0 z-0 opacity-0 transition-opacity duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:opacity-100">
               <img src={card.image} alt="" aria-hidden="true" class="h-full w-full object-cover" loading="lazy" />
               <div class="absolute inset-0 bg-black/50"></div>
             </div>
-
-            <!-- Content -->
             <div class="relative z-10 flex h-11 w-11 items-center justify-center rounded-xl border border-[#f3d5c8] bg-[#fdf0eb] transition-colors duration-300 group-hover:border-white/30 group-hover:bg-white/15">
               <img
                 src={card.icon}
@@ -83,8 +89,8 @@ const steps = [
               />
             </div>
             <div class="relative z-10">
-              <h3 class="text-[17px] font-semibold text-[#111] transition-colors duration-300 group-hover:text-white">{card.title}</h3>
-              <p class="mt-2 text-[14px] leading-[1.6] text-[#777] transition-colors duration-300 group-hover:text-white/75">{card.description}</p>
+              <h3 data-i18n={`${card.ikey}.title`} class="text-[17px] font-semibold text-[#111] transition-colors duration-300 group-hover:text-white">{card.title}</h3>
+              <p data-i18n={`${card.ikey}.desc`} class="mt-2 text-[14px] leading-[1.6] text-[#777] transition-colors duration-300 group-hover:text-white/75">{card.description}</p>
             </div>
           </div>
         ))}
@@ -97,10 +103,11 @@ const steps = [
   <div class="mx-auto max-w-[1400px] px-6 lg:px-12 pb-8">
     <div class="flex flex-col gap-8 sm:flex-row sm:items-start sm:gap-16">
       <div class="w-full pt-2 sm:w-[30%] sm:shrink-0">
-        <span class="inline-block rounded-full border border-[#f37443] px-4 py-1.5 text-[11px] font-semibold uppercase tracking-[3px] text-[#f37443]">How It Works</span>
+        <span data-i18n="howItWorks.howBadge" class="inline-block rounded-full border border-[#f37443] px-4 py-1.5 text-[11px] font-semibold uppercase tracking-[3px] text-[#f37443]">How It Works</span>
       </div>
       <h2
         data-reveal
+        data-i18n="howItWorks.howTitle"
         class="text-[36px] font-normal leading-[1.2] tracking-[-0.5px] text-[#111] sm:text-[48px] lg:text-[52px]"
       >
         Why Evox Works: Challenge the body, calm the mind, connect the team. Results you can feel and measure.
@@ -114,11 +121,11 @@ const steps = [
       <div class="border-t border-[#e8e6e3]">
         <div class="flex h-[71px] items-center">
           <div class="w-[30%] shrink-0 text-[15px] font-normal text-[#111]">
-            {i === 0 ? 'Benefits' : ''}
+            {i === 0 ? <span data-i18n="howItWorks.benefitsLabel">Benefits</span> : ''}
           </div>
           <div class="flex flex-1 items-center gap-[50px]">
             <span class="shrink-0 text-[20px] font-normal text-[#f37443]">({item.number})</span>
-            <h3 class="text-[22px] font-normal leading-[1.2] text-[#111] lg:text-[30px]">
+            <h3 data-i18n={`${item.ikey}.title`} class="text-[22px] font-normal leading-[1.2] text-[#111] lg:text-[30px]">
               {item.title}
             </h3>
           </div>
@@ -127,7 +134,7 @@ const steps = [
           <div class="w-[30%] shrink-0" />
           <div class="flex flex-1 gap-[50px]">
             <span class="shrink-0 text-[20px] opacity-0 select-none">({item.number})</span>
-            <p class="text-[13px] leading-[1.65] text-[#888]">{item.description}</p>
+            <p data-i18n={`${item.ikey}.desc`} class="text-[13px] leading-[1.65] text-[#888]">{item.description}</p>
           </div>
         </div>
       </div>

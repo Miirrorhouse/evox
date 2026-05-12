@@ -1,9 +1,14 @@
 ---
 const navLinks = [
-  { label: "How It Works", href: "#how-it-works" },
-  { label: "Who It's For", href: "#who-its-for" },
-  { label: "Pricing", href: "#pricing" },
-  { label: "FAQ", href: "#faq" },
+  { label: "How It Works", href: "#how-it-works", key: "nav.howItWorks" },
+  { label: "Who It's For", href: "#who-its-for", key: "nav.whoItsFor" },
+  { label: "Pricing",      href: "#pricing",      key: "nav.pricing" },
+  { label: "FAQ",          href: "#faq",           key: "nav.faq" },
+];
+
+const languages = [
+  { code: "en", flag: "🇬🇧", label: "English" },
+  { code: "es", flag: "🇪🇸", label: "Español" },
 ];
 ---
 
@@ -24,6 +29,7 @@ const navLinks = [
         {navLinks.map((link) => (
           <a
             href={link.href}
+            data-i18n={link.key}
             class="text-[14px] font-medium text-white/70 transition-colors hover:text-white"
           >
             {link.label}
@@ -31,59 +37,162 @@ const navLinks = [
         ))}
       </div>
 
-      <a
-        href="#pricing"
-        id="nav-cta-btn"
-        class="inline-flex shrink-0 items-center justify-center rounded-full px-6 py-2 text-[14px] font-bold leading-none text-white"
-        style="background: transparent; border: 1px solid rgba(255,255,255,0.8);"
-      >
-        Get Started
-      </a>
+      <div class="flex items-center gap-3">
+        <!-- Language Switcher Dropdown -->
+        <div id="lang-dropdown" class="relative">
+          <button
+            id="lang-trigger"
+            aria-haspopup="listbox"
+            aria-expanded="false"
+            class="flex items-center gap-2 rounded-full border border-white/20 bg-black/40 px-3 py-1.5 backdrop-blur-md transition-all duration-200 hover:border-white/35 hover:bg-black/55 active:scale-[0.98]"
+          >
+            <span id="lang-flag" class="text-[15px] leading-none">🇬🇧</span>
+            <span id="lang-label" class="text-[13px] font-semibold text-white">English</span>
+            <svg id="lang-chevron" xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="text-white/50 transition-transform duration-200" aria-hidden="true">
+              <path d="M6 9l6 6 6-6"/>
+            </svg>
+          </button>
+
+          <!-- Dropdown panel -->
+          <div
+            id="lang-menu"
+            role="listbox"
+            aria-label="Select language"
+            class="absolute right-0 top-[calc(100%+8px)] min-w-[140px] overflow-hidden rounded-xl border border-white/15 bg-black/80 shadow-[0_8px_32px_rgba(0,0,0,0.5)] backdrop-blur-xl"
+            style="display:none; opacity:0; transform:translateY(-6px);"
+          >
+            {languages.map((lang) => (
+              <button
+                data-lang-btn={lang.code}
+                role="option"
+                class="flex w-full items-center gap-2.5 px-4 py-2.5 text-left transition-colors duration-150 hover:bg-white/10 first:pt-3 last:pb-3"
+              >
+                <span class="text-[15px] leading-none">{lang.flag}</span>
+                <span class="text-[13px] font-medium text-white/80">{lang.label}</span>
+                <svg data-lang-check={lang.code} xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#f37443" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="ml-auto" style="display:none;" aria-hidden="true">
+                  <polyline points="20 6 9 17 4 12"/>
+                </svg>
+              </button>
+            ))}
+          </div>
+        </div>
+
+        <a
+          href="#pricing"
+          id="nav-cta-btn"
+          data-i18n="nav.getStarted"
+          class="inline-flex shrink-0 items-center justify-center rounded-full px-6 py-2 text-[14px] font-bold leading-none text-white"
+          style="background: transparent; border: 1px solid rgba(255,255,255,0.8);"
+        >
+          Get Started
+        </a>
+      </div>
     </nav>
   </div>
 </header>
 
 <script>
+  /* ── Scroll hide ── */
   let removeScrollListener: (() => void) | null = null;
 
   function setupHeaderScrollHide() {
     removeScrollListener?.();
     removeScrollListener = null;
-
     const header = document.getElementById("site-header");
     if (!header) return;
-
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-
     let lastScrollY = window.scrollY;
     let ticking = false;
-
     function onScrollFrame() {
       ticking = false;
       const y = Math.max(0, window.scrollY);
-      if (y < 48) {
-        header!.removeAttribute("data-nav-concealed");
-      } else if (y > lastScrollY + 8) {
-        header!.setAttribute("data-nav-concealed", "true");
-      } else if (y < lastScrollY - 8) {
-        header!.removeAttribute("data-nav-concealed");
-      }
+      if (y < 48) header!.removeAttribute("data-nav-concealed");
+      else if (y > lastScrollY + 8) header!.setAttribute("data-nav-concealed", "true");
+      else if (y < lastScrollY - 8) header!.removeAttribute("data-nav-concealed");
       lastScrollY = y;
     }
-
     function onScroll() {
-      if (!ticking) {
-        requestAnimationFrame(onScrollFrame);
-        ticking = true;
-      }
+      if (!ticking) { requestAnimationFrame(onScrollFrame); ticking = true; }
     }
-
     window.addEventListener("scroll", onScroll, { passive: true });
     removeScrollListener = () => window.removeEventListener("scroll", onScroll);
   }
 
   setupHeaderScrollHide();
   document.addEventListener("astro:page-load", setupHeaderScrollHide);
+
+  /* ── Language dropdown ── */
+  const langs: Record<string, { flag: string; label: string }> = {
+    en: { flag: "🇬🇧", label: "English" },
+    es: { flag: "🇪🇸", label: "Español" },
+  };
+
+  function updateTrigger(lang: string) {
+    const flag = document.getElementById("lang-flag");
+    const label = document.getElementById("lang-label");
+    if (flag) flag.textContent = langs[lang]?.flag ?? "🇬🇧";
+    if (label) label.textContent = langs[lang]?.label ?? "English";
+    // update checkmarks
+    document.querySelectorAll("[data-lang-check]").forEach((el) => {
+      (el as HTMLElement).style.display =
+        el.getAttribute("data-lang-check") === lang ? "block" : "none";
+    });
+  }
+
+  function setupDropdown() {
+    const trigger = document.getElementById("lang-trigger");
+    const menu = document.getElementById("lang-menu") as HTMLElement | null;
+    const chevron = document.getElementById("lang-chevron");
+    if (!trigger || !menu) return;
+
+    let open = false;
+
+    function openMenu() {
+      open = true;
+      menu.style.display = "block";
+      trigger!.setAttribute("aria-expanded", "true");
+      requestAnimationFrame(() => {
+        menu.style.transition = "opacity 0.18s cubic-bezier(0.22,1,0.36,1), transform 0.18s cubic-bezier(0.22,1,0.36,1)";
+        menu.style.opacity = "1";
+        menu.style.transform = "translateY(0)";
+        chevron?.style.setProperty("transform", "rotate(180deg)");
+      });
+    }
+
+    function closeMenu() {
+      open = false;
+      trigger!.setAttribute("aria-expanded", "false");
+      menu.style.transition = "opacity 0.15s ease, transform 0.15s ease";
+      menu.style.opacity = "0";
+      menu.style.transform = "translateY(-6px)";
+      chevron?.style.setProperty("transform", "rotate(0deg)");
+      setTimeout(() => { if (!open) menu.style.display = "none"; }, 150);
+    }
+
+    trigger.addEventListener("click", (e) => {
+      e.stopPropagation();
+      open ? closeMenu() : openMenu();
+    });
+
+    document.addEventListener("click", () => { if (open) closeMenu(); });
+    menu.addEventListener("click", (e) => e.stopPropagation());
+
+    // init display from saved lang
+    const saved = localStorage.getItem("evox-lang") ?? "en";
+    updateTrigger(saved);
+
+    // wire lang buttons
+    menu.querySelectorAll("[data-lang-btn]").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const lang = btn.getAttribute("data-lang-btn")!;
+        updateTrigger(lang);
+        closeMenu();
+      });
+    });
+  }
+
+  setupDropdown();
+  document.addEventListener("astro:page-load", setupDropdown);
 </script>
 
 <style>
@@ -93,13 +202,9 @@ const navLinks = [
       box-shadow 0.35s cubic-bezier(0.22, 1, 0.36, 1),
       transform 0.15s cubic-bezier(0.22, 1, 0.36, 1);
   }
-
   #nav-cta-btn:hover {
     background: rgba(255, 255, 255, 0.08) !important;
     border-color: rgba(255, 255, 255, 1) !important;
   }
-
-  #nav-cta-btn:active {
-    transform: scale(0.98);
-  }
+  #nav-cta-btn:active { transform: scale(0.98); }
 </style>
