@@ -4,25 +4,31 @@
 <section
   id="hero"
   class="relative flex min-h-[100dvh] flex-col overflow-hidden"
+  data-parallax-section
 >
-  <div class="absolute inset-0 z-0">
-    <img
-      src="/images/61.jpg"
-      alt=""
+  <div class="absolute inset-0 z-0" data-parallax-bg>
+    <video
+      class="hero-img h-full w-full object-cover object-center will-change-transform"
+      style="transform-origin: center center;"
+      autoplay
+      muted
+      loop
+      playsinline
       aria-hidden="true"
-      class="h-full w-full object-cover object-center"
-    />
+    >
+      <source src="/images/hero-bg.mp4" type="video/mp4" />
+    </video>
     <div class="absolute inset-0 bg-black/40" aria-hidden="true"></div>
-    <div class="absolute inset-0 bg-gradient-to-r from-black/60 via-black/25 to-transparent" aria-hidden="true"></div>
+    <div class="absolute inset-0 bg-gradient-to-r from-black/30 via-black/20 to-black/30" aria-hidden="true"></div>
     <div class="absolute bottom-0 left-0 right-0 h-48 bg-gradient-to-t from-black to-transparent" aria-hidden="true"></div>
   </div>
 
-  <div class="relative z-10 mx-auto flex w-full max-w-[1400px] flex-1 items-end px-6 pb-20 pt-8 lg:px-12 lg:pb-28">
-    <div class="flex w-full flex-col lg:max-w-2xl">
+  <div class="relative z-10 mx-auto flex w-full max-w-[1400px] flex-1 items-center justify-center px-6 pt-8 pb-8 lg:px-12 will-change-transform" data-parallax-content>
+    <div class="flex w-full flex-col items-center text-center">
 
       <!-- Trust badge -->
       <div
-        class="hero-animate inline-flex items-center gap-2 self-start rounded-full border border-white/20 bg-white/10 px-4 py-1.5 backdrop-blur-sm"
+        class="hero-animate inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-1.5 backdrop-blur-sm"
         style="animation-delay: 0.1s;"
       >
         <svg width="13" height="13" viewBox="0 0 24 24" fill="#f37443" aria-hidden="true">
@@ -42,7 +48,7 @@
 
       <!-- Subheadline -->
       <p
-        class="hero-animate mt-6 max-w-xl text-[18px] font-normal leading-[1.55] text-white/80"
+        class="hero-animate mt-6 max-w-2xl text-[18px] font-normal leading-[1.55] text-white/80"
         style="animation-delay: 0.35s;"
       >
         At Evox, every experience is rooted in the body and movement — because real transformation happens when people step out of their comfort zone and into action.
@@ -64,3 +70,43 @@
     </div>
   </div>
 </section>
+
+<script is:inline>
+  (function () {
+    var section = document.querySelector("[data-parallax-section]");
+    var bg = section && section.querySelector("[data-parallax-bg] video, [data-parallax-bg] img");
+    var content = section && section.querySelector("[data-parallax-content]");
+    if (!section || !bg || !content) return;
+
+    var ticking = false;
+
+    function applyParallax() {
+      var rect = section.getBoundingClientRect();
+      // Only run while the section is in view
+      if (rect.bottom < 0 || rect.top > window.innerHeight) {
+        ticking = false;
+        return;
+      }
+      // progress: 0 at top of viewport, 1 when section scrolls fully out at top
+      var progress = -rect.top / rect.height;
+      // Background moves down (positive Y) — slower than scroll
+      bg.style.transform = "translateY(" + (progress * 35) + "%) scale(1.15)";
+      // Text moves up — subtle, half the rate
+      content.style.transform = "translateY(" + (progress * -12) + "%)";
+      ticking = false;
+    }
+
+    function onScroll() {
+      if (!ticking) {
+        requestAnimationFrame(applyParallax);
+        ticking = true;
+      }
+    }
+
+    // Set initial scale so there's room to pan without revealing edges
+    bg.style.transform = "translateY(0%) scale(1.15)";
+
+    window.addEventListener("scroll", onScroll, { passive: true });
+    applyParallax();
+  })();
+</script>

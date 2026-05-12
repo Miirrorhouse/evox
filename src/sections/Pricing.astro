@@ -59,7 +59,7 @@ const packages = [
 
           <div class="mt-6">
             <a
-              href="#contact"
+              href="#contact-form"
               class={`inline-flex w-full items-center justify-center rounded-full py-3 text-[15px] font-bold transition-all duration-[250ms] [transition-timing-function:cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-px active:scale-[0.98] ${
                 pkg.featured
                   ? "bg-[#f37443] text-white hover:bg-[#ed4c22]"
@@ -71,6 +71,122 @@ const packages = [
           </div>
         </div>
       ))}
+    </div>
+
+    <!-- Contact Form -->
+    <div id="contact-form" data-reveal class="mt-20 rounded-2xl border border-white/10 bg-[#161616] p-8 lg:p-12">
+      <div class="mb-10 text-center">
+        <h3 class="text-[28px] font-bold text-white sm:text-[34px]">Get a Custom Quote</h3>
+        <p class="mx-auto mt-3 max-w-md text-[15px] leading-[1.6] text-white/50">
+          Tell us about your team and we'll craft the perfect experience for you.
+        </p>
+      </div>
+
+      <form action="#" method="POST" class="space-y-6">
+        <!-- Row 1: Name + Company Size -->
+        <div class="grid grid-cols-1 gap-6 sm:grid-cols-2">
+          <div class="flex flex-col gap-2">
+            <label for="form-name" class="text-[13px] font-semibold uppercase tracking-[1.2px] text-white/40">Full Name</label>
+            <input
+              id="form-name"
+              type="text"
+              name="name"
+              required
+              placeholder="Jane Smith"
+              class="rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-[15px] text-white placeholder:text-white/25 outline-none transition-colors duration-200 focus:border-[#f37443]/60 focus:bg-white/8"
+            />
+          </div>
+          <div class="flex flex-col gap-2">
+            <label for="form-company-size" class="text-[13px] font-semibold uppercase tracking-[1.2px] text-white/40">Company Size</label>
+            <select
+              id="form-company-size"
+              name="company_size"
+              required
+              class="rounded-xl border border-white/10 bg-[#161616] px-4 py-3 text-[15px] text-white outline-none transition-colors duration-200 focus:border-[#f37443]/60 appearance-none cursor-pointer"
+            >
+              <option value="" disabled selected class="text-white/25">Select team size</option>
+              <option value="1-10">1–10 employees</option>
+              <option value="11-50">11–50 employees</option>
+              <option value="51-200">51–200 employees</option>
+              <option value="201-500">201–500 employees</option>
+              <option value="500+">500+ employees</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Row 2: Email + Phone -->
+        <div class="grid grid-cols-1 gap-6 sm:grid-cols-2">
+          <div class="flex flex-col gap-2">
+            <label for="form-email" class="text-[13px] font-semibold uppercase tracking-[1.2px] text-white/40">Email Address</label>
+            <input
+              id="form-email"
+              type="email"
+              name="email"
+              required
+              placeholder="jane@company.com"
+              class="rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-[15px] text-white placeholder:text-white/25 outline-none transition-colors duration-200 focus:border-[#f37443]/60 focus:bg-white/8"
+            />
+          </div>
+          <div class="flex flex-col gap-2">
+            <label for="form-phone" class="text-[13px] font-semibold uppercase tracking-[1.2px] text-white/40">Phone Number</label>
+            <input
+              id="form-phone"
+              type="tel"
+              name="phone"
+              placeholder="+1 (555) 000-0000"
+              class="rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-[15px] text-white placeholder:text-white/25 outline-none transition-colors duration-200 focus:border-[#f37443]/60 focus:bg-white/8"
+            />
+          </div>
+        </div>
+
+        <!-- Service Selection -->
+        <div class="flex flex-col gap-3">
+          <span class="text-[13px] font-semibold uppercase tracking-[1.2px] text-white/40">I'm Interested In</span>
+          <div class="grid grid-cols-2 gap-3 sm:grid-cols-4">
+            {["Outdoor Experiences", "Team Training", "Team Mindfulness", "Retreats"].map((service) => (
+              <label class="group flex cursor-pointer items-center gap-3 rounded-xl border border-white/10 bg-white/5 px-4 py-3 transition-colors duration-200 has-[:checked]:border-[#f37443]/60 has-[:checked]:bg-[#f37443]/10">
+                <input
+                  type="checkbox"
+                  name="services"
+                  value={service}
+                  class="hidden"
+                />
+                <span class="flex h-4 w-4 shrink-0 items-center justify-center rounded border border-white/20 bg-transparent transition-colors duration-200 group-has-[:checked]:border-[#f37443] group-has-[:checked]:bg-[#f37443]">
+                  <svg class="h-2.5 w-2.5 text-white opacity-0 transition-opacity duration-200 group-has-[:checked]:opacity-100" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <polyline points="20 6 9 17 4 12"/>
+                  </svg>
+                </span>
+                <span class="text-[13px] font-medium text-white/70 transition-colors duration-200 group-has-[:checked]:text-white">{service}</span>
+              </label>
+            ))}
+          </div>
+        </div>
+
+        <!-- Message -->
+        <div class="flex flex-col gap-2">
+          <label for="form-message" class="text-[13px] font-semibold uppercase tracking-[1.2px] text-white/40">Message <span class="normal-case tracking-normal text-white/25">(optional)</span></label>
+          <textarea
+            id="form-message"
+            name="message"
+            rows="4"
+            placeholder="Tell us about your team's goals, preferred dates, or any questions you have…"
+            class="resize-none rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-[15px] text-white placeholder:text-white/25 outline-none transition-colors duration-200 focus:border-[#f37443]/60 focus:bg-white/8"
+          ></textarea>
+        </div>
+
+        <!-- Submit -->
+        <div class="flex justify-end pt-2">
+          <button
+            type="submit"
+            class="inline-flex items-center gap-2.5 rounded-full bg-[#f37443] px-10 py-4 text-[15px] font-bold text-white transition-all duration-[250ms] [transition-timing-function:cubic-bezier(0.22,1,0.36,1)] hover:bg-[#ed4c22] hover:-translate-y-px active:translate-y-0 active:scale-[0.98]"
+          >
+            Send My Inquiry
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M5 12h14M12 5l7 7-7 7"/>
+            </svg>
+          </button>
+        </div>
+      </form>
     </div>
 
   </div>

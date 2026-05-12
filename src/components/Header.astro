@@ -13,7 +13,7 @@ const navLinks = [
 >
   <div class="pointer-events-none mx-auto w-full max-w-[1400px] px-6 lg:px-12">
     <nav
-      class="pointer-events-auto flex w-full items-center justify-between gap-4 rounded-full border border-white/10 bg-black/70 py-2.5 pl-5 pr-2.5 backdrop-blur-md sm:pl-6"
+      class="pointer-events-auto flex w-full items-center justify-between gap-4 py-2.5"
       aria-label="Primary"
     >
       <a href="/" class="flex shrink-0 items-center py-0.5">
@@ -33,7 +33,9 @@ const navLinks = [
 
       <a
         href="#pricing"
-        class="inline-flex shrink-0 items-center justify-center rounded-full bg-[#f37443] px-6 py-2 text-[14px] font-bold leading-none text-white transition-all duration-[250ms] [transition-timing-function:cubic-bezier(0.22,1,0.36,1)] hover:bg-[#ed4c22] active:scale-[0.98]"
+        id="nav-cta-btn"
+        class="inline-flex shrink-0 items-center justify-center rounded-full px-6 py-2 text-[14px] font-bold leading-none text-white"
+        style="background: transparent; border: 1px solid rgba(255,255,255,0.8);"
       >
         Get Started
       </a>
@@ -83,3 +85,21 @@ const navLinks = [
   setupHeaderScrollHide();
   document.addEventListener("astro:page-load", setupHeaderScrollHide);
 </script>
+
+<style>
+  #nav-cta-btn {
+    transition:
+      background 0.25s cubic-bezier(0.22, 1, 0.36, 1),
+      box-shadow 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+      transform 0.15s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  #nav-cta-btn:hover {
+    background: rgba(255, 255, 255, 0.08) !important;
+    border-color: rgba(255, 255, 255, 1) !important;
+  }
+
+  #nav-cta-btn:active {
+    transform: scale(0.98);
+  }
+</style>
