@@ -53,7 +53,7 @@ const formServices = ["Fitness corporativo", "Mindfulness & Workshops", "Fisiote
     </div>
 
     <div data-stagger class="mt-14 grid grid-cols-1 gap-5 lg:grid-cols-3">
-      {plans.map((plan) => (
+      {plans.map((plan, i) => (
         <div
           class={`relative flex flex-col rounded-2xl border transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-2 hover:shadow-[0_20px_60px_rgba(0,0,0,0.5)] ${
             plan.featured
@@ -70,25 +70,25 @@ const formServices = ["Fitness corporativo", "Mindfulness & Workshops", "Fisiote
           <!-- Header -->
           <div class={`px-7 pt-8 pb-6 border-b ${plan.featured ? "border-[#f37443]/20" : "border-white/8"}`}>
             <div class="flex items-start justify-between gap-3">
-              <h3 class="text-[18px] font-bold uppercase tracking-[2px] text-white">{plan.name}</h3>
-              <span class={`shrink-0 rounded-full px-3 py-1 text-[11px] font-bold tracking-[0.5px] ${plan.featured ? "bg-[#f37443]/20 text-[#f37443]" : "bg-white/8 text-white/40"}`}>
+              <h3 data-i18n={`pricing.plans.${i}.name`} class="text-[18px] font-bold uppercase tracking-[2px] text-white">{plan.name}</h3>
+              <span data-i18n={`pricing.plans.${i}.duration`} class={`shrink-0 rounded-full px-3 py-1 text-[11px] font-bold tracking-[0.5px] ${plan.featured ? "bg-[#f37443]/20 text-[#f37443]" : "bg-white/8 text-white/40"}`}>
                 {plan.duration}
               </span>
             </div>
-            <p class={`mt-1 text-[11px] font-medium uppercase tracking-[1.5px] ${plan.featured ? "text-[#f37443]/70" : "text-white/30"}`}>{plan.tagline}</p>
-            <p class="mt-4 text-[15px] leading-[1.65] text-white/65">{plan.description}</p>
+            <p data-i18n={`pricing.plans.${i}.tagline`} class={`mt-1 text-[11px] font-medium uppercase tracking-[1.5px] ${plan.featured ? "text-[#f37443]/70" : "text-white/30"}`}>{plan.tagline}</p>
+            <p data-i18n={`pricing.plans.${i}.description`} class="mt-4 text-[15px] leading-[1.65] text-white/65">{plan.description}</p>
           </div>
 
           <!-- Services -->
           <div class="px-7 py-6 flex-1">
-            <p class="mb-4 text-[10px] font-bold uppercase tracking-[2px] text-white/30">Incluye</p>
+            <p data-i18n="pricing.includes" class="mb-4 text-[10px] font-bold uppercase tracking-[2px] text-white/30">Incluye</p>
             <ul class="space-y-2.5">
-              {plan.services.map((s) => (
+              {plan.services.map((s, si) => (
                 <li class="flex items-center gap-2.5">
                   <svg class={`shrink-0 h-3.5 w-3.5 ${plan.featured ? "text-[#f37443]" : "text-white/30"}`} viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                     <polyline points="20 6 9 17 4 12"/>
                   </svg>
-                  <span class="text-[14px] text-white/65">{s}</span>
+                  <span data-i18n={`pricing.plans.${i}.services.${si}`} class="text-[14px] text-white/65">{s}</span>
                 </li>
               ))}
             </ul>
@@ -97,10 +97,10 @@ const formServices = ["Fitness corporativo", "Mindfulness & Workshops", "Fisiote
           <!-- Outcomes -->
           <div class={`mx-7 mb-6 rounded-xl px-5 py-4 ${plan.featured ? "bg-[#f37443]/10 border border-[#f37443]/20" : "bg-white/4 border border-white/8"}`}>
             <ul class="space-y-1.5">
-              {plan.outcomes.map((o) => (
+              {plan.outcomes.map((o, oi) => (
                 <li class="flex items-center gap-2">
                   <span class={`text-[13px] font-bold ${plan.featured ? "text-[#f37443]" : "text-white/35"}`}>→</span>
-                  <span class="text-[13px] font-medium text-white/70">{o}</span>
+                  <span data-i18n={`pricing.plans.${i}.outcomes.${oi}`} class="text-[13px] font-medium text-white/70">{o}</span>
                 </li>
               ))}
             </ul>
@@ -126,9 +126,9 @@ const formServices = ["Fitness corporativo", "Mindfulness & Workshops", "Fisiote
     <!-- Contact Form -->
     <div id="contact-form" data-reveal class="mt-20 rounded-2xl border border-white/10 bg-[#161616] p-8 lg:p-12">
       <div class="mb-10 text-center">
-        <h3 data-i18n="pricing.form.title" class="text-[28px] font-bold text-white sm:text-[34px]">Get a Custom Quote</h3>
+        <h3 data-i18n="pricing.form.title" class="text-[28px] font-bold text-white sm:text-[34px]">Obtén una Cotización Personalizada</h3>
         <p data-i18n="pricing.form.subtitle" class="mx-auto mt-3 max-w-md text-[15px] leading-[1.6] text-white/50">
-          Tell us about your team and we'll craft the perfect experience for you.
+          Cuéntanos sobre tu equipo y crearemos la experiencia perfecta para ti.
         </p>
       </div>
 
@@ -136,31 +136,31 @@ const formServices = ["Fitness corporativo", "Mindfulness & Workshops", "Fisiote
         <!-- Row 1: Name + Company Size -->
         <div class="grid grid-cols-1 gap-6 sm:grid-cols-2">
           <div class="flex flex-col gap-2">
-            <label for="form-name" data-i18n="pricing.form.name" class="text-[13px] font-semibold uppercase tracking-[1.2px] text-white/40">Full Name</label>
+            <label for="form-name" data-i18n="pricing.form.name" class="text-[13px] font-semibold uppercase tracking-[1.2px] text-white/40">Nombre Completo</label>
             <input
               id="form-name"
               type="text"
               name="name"
               required
               data-i18n-placeholder="pricing.form.namePlaceholder"
-              placeholder="Jane Smith"
+              placeholder="Ana García"
               class="rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-[15px] text-white placeholder:text-white/25 outline-none transition-colors duration-200 focus:border-[#f37443]/60 focus:bg-white/8"
             />
           </div>
           <div class="flex flex-col gap-2">
-            <label for="form-company-size" data-i18n="pricing.form.companySize" class="text-[13px] font-semibold uppercase tracking-[1.2px] text-white/40">Company Size</label>
+            <label for="form-company-size" data-i18n="pricing.form.companySize" class="text-[13px] font-semibold uppercase tracking-[1.2px] text-white/40">Tamaño de la Empresa</label>
             <select
               id="form-company-size"
               name="company_size"
               required
               class="rounded-xl border border-white/10 bg-[#161616] px-4 py-3 text-[15px] text-white outline-none transition-colors duration-200 focus:border-[#f37443]/60 appearance-none cursor-pointer"
             >
-              <option value="" disabled selected data-i18n-option="pricing.form.companySizePlaceholder">Select team size</option>
-              <option value="1-10"   data-i18n-option="pricing.form.companySizeOptions.0">1–10 employees</option>
-              <option value="11-50"  data-i18n-option="pricing.form.companySizeOptions.1">11–50 employees</option>
-              <option value="51-200" data-i18n-option="pricing.form.companySizeOptions.2">51–200 employees</option>
-              <option value="201-500" data-i18n-option="pricing.form.companySizeOptions.3">201–500 employees</option>
-              <option value="500+"   data-i18n-option="pricing.form.companySizeOptions.4">500+ employees</option>
+              <option value="" disabled selected data-i18n-option="pricing.form.companySizePlaceholder">Selecciona el tamaño del equipo</option>
+              <option value="1-10"   data-i18n-option="pricing.form.companySizeOptions.0">1–10 empleados</option>
+              <option value="11-50"  data-i18n-option="pricing.form.companySizeOptions.1">11–50 empleados</option>
+              <option value="51-200" data-i18n-option="pricing.form.companySizeOptions.2">51–200 empleados</option>
+              <option value="201-500" data-i18n-option="pricing.form.companySizeOptions.3">201–500 empleados</option>
+              <option value="500+"   data-i18n-option="pricing.form.companySizeOptions.4">500+ empleados</option>
             </select>
           </div>
         </div>
@@ -168,25 +168,25 @@ const formServices = ["Fitness corporativo", "Mindfulness & Workshops", "Fisiote
         <!-- Row 2: Email + Phone -->
         <div class="grid grid-cols-1 gap-6 sm:grid-cols-2">
           <div class="flex flex-col gap-2">
-            <label for="form-email" data-i18n="pricing.form.email" class="text-[13px] font-semibold uppercase tracking-[1.2px] text-white/40">Email Address</label>
+            <label for="form-email" data-i18n="pricing.form.email" class="text-[13px] font-semibold uppercase tracking-[1.2px] text-white/40">Correo Electrónico</label>
             <input
               id="form-email"
               type="email"
               name="email"
               required
               data-i18n-placeholder="pricing.form.emailPlaceholder"
-              placeholder="jane@company.com"
+              placeholder="ana@empresa.com"
               class="rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-[15px] text-white placeholder:text-white/25 outline-none transition-colors duration-200 focus:border-[#f37443]/60 focus:bg-white/8"
             />
           </div>
           <div class="flex flex-col gap-2">
-            <label for="form-phone" data-i18n="pricing.form.phone" class="text-[13px] font-semibold uppercase tracking-[1.2px] text-white/40">Phone Number</label>
+            <label for="form-phone" data-i18n="pricing.form.phone" class="text-[13px] font-semibold uppercase tracking-[1.2px] text-white/40">Número de Teléfono</label>
             <input
               id="form-phone"
               type="tel"
               name="phone"
               data-i18n-placeholder="pricing.form.phonePlaceholder"
-              placeholder="+1 (555) 000-0000"
+              placeholder="+34 600 000 000"
               class="rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-[15px] text-white placeholder:text-white/25 outline-none transition-colors duration-200 focus:border-[#f37443]/60 focus:bg-white/8"
             />
           </div>
@@ -209,7 +209,7 @@ const formServices = ["Fitness corporativo", "Mindfulness & Workshops", "Fisiote
                     <polyline points="20 6 9 17 4 12"/>
                   </svg>
                 </span>
-                <span class="text-[13px] font-medium text-white/70 transition-colors duration-200 group-has-[:checked]:text-white">{service}</span>
+                <span data-i18n={`pricing.form.services.${i}`} class="text-[13px] font-medium text-white/70 transition-colors duration-200 group-has-[:checked]:text-white">{service}</span>
               </label>
             ))}
           </div>
@@ -218,16 +218,16 @@ const formServices = ["Fitness corporativo", "Mindfulness & Workshops", "Fisiote
         <!-- Message -->
         <div class="flex flex-col gap-2">
           <label for="form-message" class="text-[13px] font-semibold uppercase tracking-[1.2px] text-white/40">
-            <span data-i18n="pricing.form.message">Message</span>
+            <span data-i18n="pricing.form.message">Mensaje</span>
             {" "}
-            <span data-i18n="pricing.form.messageOptional" class="normal-case tracking-normal text-white/25">(optional)</span>
+            <span data-i18n="pricing.form.messageOptional" class="normal-case tracking-normal text-white/25">(opcional)</span>
           </label>
           <textarea
             id="form-message"
             name="message"
             rows="4"
             data-i18n-placeholder="pricing.form.messagePlaceholder"
-            placeholder="Tell us about your team's goals, preferred dates, or any questions you have…"
+            placeholder="Cuéntanos sobre los objetivos de tu equipo, fechas preferidas o cualquier pregunta que tengas…"
             class="resize-none rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-[15px] text-white placeholder:text-white/25 outline-none transition-colors duration-200 focus:border-[#f37443]/60 focus:bg-white/8"
           ></textarea>
         </div>
@@ -238,7 +238,7 @@ const formServices = ["Fitness corporativo", "Mindfulness & Workshops", "Fisiote
             type="submit"
             class="inline-flex items-center gap-2.5 rounded-full bg-[#f37443] px-10 py-4 text-[15px] font-bold text-white transition-all duration-[250ms] [transition-timing-function:cubic-bezier(0.22,1,0.36,1)] hover:bg-[#ed4c22] hover:-translate-y-px active:translate-y-0 active:scale-[0.98]"
           >
-            <span data-i18n="pricing.form.submit">Send My Inquiry</span>
+            <span data-i18n="pricing.form.submit">Enviar Mi Consulta</span>
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
               <path d="M5 12h14M12 5l7 7-7 7"/>
             </svg>
