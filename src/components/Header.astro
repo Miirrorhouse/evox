@@ -1,9 +1,8 @@
 ---
 const navLinks = [
-  { label: "How It Works", href: "#how-it-works", key: "nav.howItWorks" },
-  { label: "Who It's For", href: "#who-its-for", key: "nav.whoItsFor" },
-  { label: "Pricing",      href: "#pricing",      key: "nav.pricing" },
-  { label: "FAQ",          href: "#faq",           key: "nav.faq" },
+  { label: "Programas", href: "#pricing",       key: "nav.programas" },
+  { label: "Servicios", href: "#how-it-works",  key: "nav.servicios" },
+  { label: "Contacto",  href: "#contact-form",  key: "nav.contacto" },
 ];
 
 const languages = [
@@ -21,8 +20,9 @@ const languages = [
       class="pointer-events-auto flex w-full items-center justify-between gap-4 py-2.5"
       aria-label="Primary"
     >
-      <a href="/" class="flex shrink-0 items-center py-0.5">
+      <a href="/" class="flex shrink-0 flex-col items-start py-0.5">
         <img src="/images/Asset-1.svg" alt="Evox" class="h-7 w-auto brightness-0 invert sm:h-8" />
+        <span class="mt-0.5 text-[10px] font-medium tracking-[0.12em] uppercase text-white/50 leading-none">Evox experiences</span>
       </a>
 
       <div class="hidden items-center gap-7 md:flex">
@@ -178,7 +178,7 @@ const languages = [
     menu.addEventListener("click", (e) => e.stopPropagation());
 
     // init display from saved lang
-    const saved = localStorage.getItem("evox-lang") ?? "en";
+    const saved = localStorage.getItem("evox-lang") ?? "es";
     updateTrigger(saved);
 
     // wire lang buttons

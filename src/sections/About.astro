@@ -5,34 +5,98 @@ const images = [
   { src: "/images/Woman-with-Tennis-Racket_1Woman with Tennis Racket.webp", alt: "Woman with tennis racket" },
   { src: "/images/nastuh-abootalebi-yWwob8kwOCk-unsplash_16960c292402437378098ab5374425a12_nastuh-abootalebi-yWwob8kwOCk-unsplash.webp", alt: "Athlete outdoors" },
 ];
+
+const problems = [
+  {
+    num: "01",
+    titleKey: "about.p1title",
+    bodyKey: "about.p1body",
+    title: "Burnout silencioso",
+    body: "Equipos funcionando en automático, con menos energía, foco y motivación.",
+  },
+  {
+    num: "02",
+    titleKey: "about.p2title",
+    bodyKey: "about.p2body",
+    title: "Desconexión humana",
+    body: "Menos presencia. Menos colaboración real. Más distancia entre las personas.",
+  },
+  {
+    num: "03",
+    titleKey: "about.p3title",
+    bodyKey: "about.p3body",
+    title: "Creatividad bloqueada",
+    body: "Cuando el estrés domina, el rendimiento y las buenas ideas empiezan a desaparecer.",
+  },
+  {
+    num: "04",
+    titleKey: "about.p4title",
+    bodyKey: "about.p4body",
+    title: "Cultura desgastada",
+    body: "Las personas no abandonan empresas. Abandonan entornos donde dejaron de sentirse vivas.",
+  },
+];
 ---
 
 <section id="about" class="bg-white py-24 lg:py-32">
   <div class="mx-auto max-w-[1400px] px-6 lg:px-12">
 
-    <!-- Text block -->
-    <div data-stagger="loose" class="mx-auto max-w-3xl text-center">
-      <span data-i18n="about.badge" class="inline-block rounded-full border border-[#f37443] px-4 py-1.5 text-[11px] font-semibold uppercase tracking-[3px] text-[#f37443]">about EVOX</span>
-      <h2
-        data-i18n-html="about.title"
-        class="mt-4 text-[36px] font-normal leading-[1.2] tracking-[-0.5px] text-[#111] sm:text-[48px] lg:text-[56px]"
-      >
-        Real Transformation Always<br class="hidden sm:block" /> Starts from Within
-      </h2>
-      <p data-i18n="about.body" class="mt-6 text-[16px] leading-[1.5] text-[#555]">
-        At Evox we design experiences that move people. We blend adventure and wellness to reconnect teams
-        and individuals with their bodies, their essence, and nature. Through hiking, paddle and kayak outings,
-        via ferrata, retreats, fitness, physiotherapy, and mindfulness, we turn challenge into clarity, trust,
-        and lasting growth. Whether you need a half-day reset or a multi-day evolution, our programs are
-        tailor-made and fully supported end to end. Come for the activity, leave with stronger connection,
-        better performance, and a healthier culture.
-      </p>
+    <!-- Badge -->
+    <div data-reveal class="flex justify-center">
+      <span data-i18n="about.badge" class="inline-block rounded-full border border-[#f37443] px-4 py-1.5 text-[11px] font-semibold uppercase tracking-[3px] text-[#f37443]">sobre EVOX</span>
+    </div>
+
+    <!-- Headline -->
+    <h2
+      data-reveal
+      data-i18n="about.title"
+      class="mt-4 text-center text-[36px] font-normal leading-[1.2] tracking-[-0.5px] text-[#111] sm:text-[48px] lg:text-[56px]"
+    >
+      El problema no es el talento.
+    </h2>
+
+    <!-- Subtitle -->
+    <p
+      data-reveal
+      data-i18n="about.subtitle"
+      class="mx-auto mt-5 max-w-xl text-center text-[18px] leading-[1.6] text-[#888]"
+    >
+      Es el entorno en el que las personas viven y trabajan.
+    </p>
+
+    <!-- Problem grid -->
+    <div data-stagger class="mt-16 grid grid-cols-1 gap-px bg-[#e8e8e8] border border-[#e8e8e8] rounded-2xl overflow-hidden sm:grid-cols-2">
+      {problems.map((p) => (
+        <div class="group relative bg-white px-8 py-10 lg:px-10 lg:py-12 transition-colors duration-300 hover:bg-[#faf9f7]">
+          <!-- Number -->
+          <span class="block text-[11px] font-bold tracking-[3px] uppercase text-[#ccc] mb-4">{p.num}</span>
+
+          <!-- Divider -->
+          <div class="mb-5 h-px w-10 bg-[#f37443] transition-all duration-500 group-hover:w-16"></div>
+
+          <!-- Title -->
+          <h3
+            data-i18n={p.titleKey}
+            class="text-[22px] font-semibold leading-[1.25] tracking-[-0.3px] text-[#111] lg:text-[26px]"
+          >
+            {p.title}
+          </h3>
+
+          <!-- Body -->
+          <p
+            data-i18n={p.bodyKey}
+            class="mt-3 text-[15px] leading-[1.65] text-[#666]"
+          >
+            {p.body}
+          </p>
+        </div>
+      ))}
     </div>
 
   </div>
 
-  <!-- Image strip — overflows the section edges intentionally -->
-  <div class="relative mt-16 overflow-hidden" id="about-img-track-wrap">
+  <!-- Image strip -->
+  <div class="relative mt-20 overflow-hidden" id="about-img-track-wrap">
     <div
       id="about-img-track"
       class="flex gap-4 mx-auto will-change-transform"

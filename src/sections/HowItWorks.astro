@@ -1,32 +1,32 @@
 ---
 const wellnessCards = [
   {
-    title: "Fitness",
-    description: "group classes, personal training, corporate fitness programs",
+    title: "Fitness Sessions",
+    description: "clases grupales, entrenamiento personal, programas de fitness corporativo",
     icon: "/images/brain.svg",
     image: "/images/Focused-Strength-in-the-Gym_1Focused Strength in the Gym.webp",
     ikey: "howItWorks.wellness.0",
   },
   {
-    title: "Physiotherapy",
-    description: "massages, rehab, prevention, corporate sessions",
+    title: "Fisioterapia",
+    description: "masajes, rehabilitación, prevención, sesiones corporativas",
     icon: "/images/lightning.svg",
     image: "/images/Focused-Basketball-Player_1Focused Basketball Player.webp",
     ikey: "howItWorks.wellness.1",
   },
   {
-    title: "Mindfulness",
-    description: "meditation, breathwork, stress-reduction workshops",
+    title: "Workshops & Mindfulness",
+    description: "meditación, respiración, talleres de reducción del estrés",
     icon: "/images/chart-line-up.svg",
     image: "/images/Smiling-Athletic-Woman_1Smiling Athletic Woman.webp",
     ikey: "howItWorks.wellness.2",
   },
   {
-    title: "Active Breaks",
-    description: "short movement & ergonomic pauses in workplace",
-    icon: "/images/shield.svg",
-    image: "/images/Gymnast-Mid-Performance_1Gymnast Mid-Performance.webp",
-    ikey: "howItWorks.wellness.3",
+    title: "Teambuilding Experiences",
+    description: "dinámicas grupales, actividades outdoor, experiencias de cohesión de equipo",
+    icon: "/images/brain.svg",
+    image: "/images/nastuh-abootalebi-yWwob8kwOCk-unsplash_1nastuh-abootalebi-yWwob8kwOCk-unsplash.webp",
+    ikey: "howItWorks.wellness.4",
   },
 ];
 
@@ -69,8 +69,15 @@ const steps = [
         data-i18n="howItWorks.wellnessTitle"
         class="mt-5 text-[36px] font-normal leading-[1.2] tracking-[-0.5px] text-[#111] sm:text-[48px]"
       >
-        Explore Our Wellness Options
+        El bienestar es la base de los equipos
       </h2>
+      <p
+        data-reveal
+        data-i18n="howItWorks.wellnessSub"
+        class="mt-4 max-w-2xl text-[17px] leading-[1.65] text-[#666]"
+      >
+        Cuando los equipos reconectan con su cuerpo y su energía, mejoran la forma en la que trabajan, lideran y colaboran. Por eso en EVOX creamos programas y experiencias que generan conexión, transformación y evolución real.
+      </p>
 
       <div data-stagger class="mt-12 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
         {wellnessCards.map((card) => (
