@@ -1,4 +1,17 @@
 ---
+const logos = [
+  { src: "/images/logos/Benevity_logo.svg.png",         alt: "Benevity",      large: false },
+  { src: "/images/logos/Gemini-Logo-New.png",           alt: "Gemini",        large: true  },
+  { src: "/images/logos/aticco_logo.png",               alt: "Aticco",        large: false },
+  { src: "/images/logos/binance_logo.png",              alt: "Binance",       large: false },
+  { src: "/images/logos/ef-logo.png",                   alt: "EF",            large: true  },
+  { src: "/images/logos/nal_3 logo.png",                alt: "NAL",           large: false, sm: true },
+  { src: "/images/logos/oncowork_logo.svg",             alt: "Oncowork",      large: false },
+  { src: "/images/logos/primal_state_gmbh_logo.jpeg",  alt: "Primal State",  large: true, xl: true  },
+  { src: "/images/logos/ridcardo_b_logo.png",           alt: "Ridcardo B",    large: false },
+  { src: "/images/logos/Soho_House_logo.jpg",           alt: "Soho House",    large: false },
+];
+
 const images = [
   { src: "/images/Athletic-Woman-Close-Up_1Athletic Woman Close-Up.webp", alt: "Athletic woman close up" },
   { src: "/images/nastuh-abootalebi-yWwob8kwOCk-unsplash_1nastuh-abootalebi-yWwob8kwOCk-unsplash.webp", alt: "Wellness activity" },
@@ -38,8 +51,28 @@ const problems = [
 ];
 ---
 
-<section id="about" class="bg-white py-24 lg:py-32">
+<section id="about" class="bg-white pt-10 pb-24 lg:pt-12 lg:pb-32">
   <div class="mx-auto max-w-[1400px] px-6 lg:px-12">
+
+    <!-- Logos -->
+    <p data-reveal class="mb-8 text-center text-[12px] font-semibold uppercase tracking-[3px] text-[#bbb]">
+      Empresas que confían en EVOX
+    </p>
+    <div data-reveal class="grid grid-cols-2 gap-x-10 gap-y-8 sm:grid-cols-3 lg:grid-cols-5">
+      {logos.map((logo) => (
+        <div class="flex items-center justify-center">
+          <img
+            src={logo.src}
+            alt={logo.alt}
+            loading="lazy"
+            class={`w-auto object-contain opacity-80 transition-opacity duration-300 hover:opacity-100 ${logo.xl ? "max-h-[4.5rem] max-w-[210px]" : logo.large ? "max-h-14 max-w-[160px]" : logo.sm ? "max-h-8 max-w-[104px]" : "max-h-10 max-w-[130px]"}`}
+          />
+        </div>
+      ))}
+    </div>
+
+    <!-- Divider -->
+    <div class="my-20 h-px bg-[#ebebeb]"></div>
 
     <!-- Badge -->
     <div data-reveal class="flex justify-center">
