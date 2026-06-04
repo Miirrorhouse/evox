@@ -150,7 +150,13 @@ const plans = [
         </p>
       </div>
 
-      <form action="#" method="POST" class="space-y-6">
+      <!-- Success message -->
+      <div id="form-success" class="hidden mb-6 rounded-xl border border-[#f37443]/40 bg-[#f37443]/10 px-6 py-5 text-center">
+        <p class="text-[16px] font-semibold text-white">¡Mensaje enviado! 🎉</p>
+        <p class="mt-1 text-[14px] text-white/60">Nos pondremos en contacto contigo pronto.</p>
+      </div>
+
+      <form id="contact-form-el" class="space-y-6" novalidate>
         <!-- Row 1: Name + Company Size -->
         <div class="grid grid-cols-1 gap-6 sm:grid-cols-2">
           <div class="flex flex-col gap-2">
@@ -230,11 +236,12 @@ const plans = [
         <!-- Submit -->
         <div class="flex justify-end pt-2">
           <button
+            id="form-submit-btn"
             type="submit"
-            class="inline-flex items-center gap-2.5 rounded-full bg-[#f37443] px-10 py-4 text-[15px] font-bold text-white transition-all duration-[250ms] [transition-timing-function:cubic-bezier(0.22,1,0.36,1)] hover:bg-[#ed4c22] hover:-translate-y-px active:translate-y-0 active:scale-[0.98]"
+            class="inline-flex items-center gap-2.5 rounded-full bg-[#f37443] px-10 py-4 text-[15px] font-bold text-white transition-all duration-[250ms] [transition-timing-function:cubic-bezier(0.22,1,0.36,1)] hover:bg-[#ed4c22] hover:-translate-y-px active:translate-y-0 active:scale-[0.98] disabled:opacity-60 disabled:cursor-not-allowed"
           >
-            <span data-i18n="pricing.form.submit">Enviar Mi Consulta</span>
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <span id="form-submit-label" data-i18n="pricing.form.submit">Enviar Mi Consulta</span>
+            <svg id="form-submit-arrow" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
               <path d="M5 12h14M12 5l7 7-7 7"/>
             </svg>
           </button>
@@ -244,3 +251,47 @@ const plans = [
 
   </div>
 </section>
+
+<script is:inline>
+  (function () {
+    var SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxYSw7bqIIImXEYhDt1eROAA16wF1eVhQZpJInIeKtDv8D7e61bpPhrOxmL3jYdS-ZOWA/exec";
+
+    var form    = document.getElementById("contact-form-el");
+    var success = document.getElementById("form-success");
+    var btn     = document.getElementById("form-submit-btn");
+    var label   = document.getElementById("form-submit-label");
+    var arrow   = document.getElementById("form-submit-arrow");
+
+    if (!form) return;
+
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      var name    = document.getElementById("form-name").value.trim();
+      var size    = document.getElementById("form-company-size").value;
+      var email   = document.getElementById("form-email").value.trim();
+      var phone   = document.getElementById("form-phone").value.trim();
+      var message = document.getElementById("form-message").value.trim();
+
+      if (!name || !email || !size) return;
+
+      btn.disabled  = true;
+      label.textContent = "Enviando…";
+      arrow.style.display = "none";
+
+      fetch(SCRIPT_URL, {
+        method: "POST",
+        body: JSON.stringify({ name: name, company_size: size, email: email, phone: phone, message: message }),
+      })
+        .then(function () {
+          form.style.display = "none";
+          success.classList.remove("hidden");
+        })
+        .catch(function () {
+          label.textContent = "Error — intenta de nuevo";
+          btn.disabled = false;
+          arrow.style.display = "inline";
+        });
+    });
+  })();
+</script>
