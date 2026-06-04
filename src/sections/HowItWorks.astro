@@ -128,6 +128,18 @@ const steps = [
   <div data-stagger class="mx-auto max-w-[1400px] px-6 lg:px-12 mt-4">
     {steps.map((item, i) => (
       <div class="group border-t border-[#e8e6e3] py-8 lg:py-10">
+
+        <!-- Photo: full-width on mobile, hidden here on sm+ -->
+        <div class="mb-5 overflow-hidden rounded-xl sm:hidden aspect-video w-full">
+          <img
+            src={item.image}
+            alt=""
+            aria-hidden="true"
+            loading="lazy"
+            class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+          />
+        </div>
+
         <div class="flex items-start gap-6 lg:gap-10">
 
           <!-- Label col -->
@@ -154,8 +166,8 @@ const steps = [
             </div>
           </div>
 
-          <!-- Photo -->
-          <div class="shrink-0 w-[120px] h-[88px] sm:w-[180px] sm:h-[128px] lg:w-[240px] lg:h-[168px] overflow-hidden rounded-xl">
+          <!-- Photo: inline on sm+, hidden on mobile -->
+          <div class="hidden sm:block shrink-0 sm:w-[180px] sm:h-[128px] lg:w-[240px] lg:h-[168px] overflow-hidden rounded-xl">
             <img
               src={item.image}
               alt=""
