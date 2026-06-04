@@ -35,7 +35,7 @@ const plans = [
   },
 ];
 
-const formServices = ["Fitness corporativo", "Mindfulness & Workshops", "Fisioterapia", "Pausas Activas", "Teambuilding", "Retiros"];
+
 ---
 
 <section id="pricing" class="bg-[#0a0a0a] py-24 lg:py-32">
@@ -204,29 +204,6 @@ const formServices = ["Fitness corporativo", "Mindfulness & Workshops", "Fisiote
               placeholder="+34 600 000 000"
               class="rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-[15px] text-white placeholder:text-white/25 outline-none transition-colors duration-200 focus:border-[#f37443]/60 focus:bg-white/8"
             />
-          </div>
-        </div>
-
-        <!-- Service Selection -->
-        <div class="flex flex-col gap-3">
-          <span data-i18n="pricing.form.interested" class="text-[13px] font-semibold uppercase tracking-[1.2px] text-white/40">Estoy interesado en</span>
-          <div class="grid grid-cols-2 gap-3 sm:grid-cols-3">
-            {formServices.map((service, i) => (
-              <label class="group flex cursor-pointer items-center gap-3 rounded-xl border border-white/10 bg-white/5 px-4 py-3 transition-colors duration-200 has-[:checked]:border-[#f37443]/60 has-[:checked]:bg-[#f37443]/10">
-                <input
-                  type="checkbox"
-                  name="services"
-                  value={service}
-                  class="hidden"
-                />
-                <span class="flex h-4 w-4 shrink-0 items-center justify-center rounded border border-white/20 bg-transparent transition-colors duration-200 group-has-[:checked]:border-[#f37443] group-has-[:checked]:bg-[#f37443]">
-                  <svg class="h-2.5 w-2.5 text-white opacity-0 transition-opacity duration-200 group-has-[:checked]:opacity-100" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                    <polyline points="20 6 9 17 4 12"/>
-                  </svg>
-                </span>
-                <span data-i18n={`pricing.form.services.${i}`} class="text-[13px] font-medium text-white/70 transition-colors duration-200 group-has-[:checked]:text-white">{service}</span>
-              </label>
-            ))}
           </div>
         </div>
 

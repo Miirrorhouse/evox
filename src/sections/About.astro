@@ -21,6 +21,7 @@ const problems = [
     title: "Burnout silencioso",
     body: "Equipos funcionando en automático, con menos energía, foco y motivación.",
     img: "/images/section3-burnout.jpg",
+    imgPos: "object-center",
   },
   {
     num: "02",
@@ -29,6 +30,7 @@ const problems = [
     title: "Desconexión humana",
     body: "Menos presencia. Menos colaboración real. Más distancia entre las personas.",
     img: "/images/section3-desconexion.jpg",
+    imgPos: "object-[center_20%]",
   },
   {
     num: "03",
@@ -37,6 +39,7 @@ const problems = [
     title: "Creatividad bloqueada",
     body: "Cuando el estrés domina, el rendimiento y las buenas ideas empiezan a desaparecer.",
     img: "/images/section3-creatividad.jpg",
+    imgPos: "object-center",
   },
   {
     num: "04",
@@ -45,6 +48,7 @@ const problems = [
     title: "Cultura desgastada",
     body: "Las personas no abandonan empresas. Abandonan entornos donde dejaron de sentirse vivas.",
     img: "/images/section3-cultura.jpg",
+    imgPos: "object-[center_20%]",
   },
 ];
 ---
@@ -105,7 +109,7 @@ const problems = [
               src={p.img}
               alt={p.title}
               loading="lazy"
-              class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+              class={`h-full w-full object-cover ${p.imgPos} transition-transform duration-700 group-hover:scale-105`}
             />
             <div class="absolute inset-0 bg-black/35"></div>
           </div>

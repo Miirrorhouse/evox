@@ -17,7 +17,8 @@ const languages = [
 >
   <div class="pointer-events-none mx-auto w-full max-w-[1400px] px-6 lg:px-12">
     <nav
-      class="pointer-events-auto flex w-full items-center justify-between gap-4 py-2.5"
+      id="site-nav"
+      class="pointer-events-auto flex w-full items-center justify-between gap-4 rounded-2xl px-4 py-2.5 transition-all duration-300 ease-[cubic-bezier(0.22,1,0.36,1)]"
       aria-label="Primary"
     >
       <a href="/" class="flex shrink-0 flex-col items-start py-0.5">
@@ -82,7 +83,7 @@ const languages = [
           id="nav-cta-btn"
           data-i18n="nav.getStarted"
           class="inline-flex shrink-0 items-center justify-center rounded-full px-6 py-2 text-[14px] font-bold leading-none text-white"
-          style="background: transparent; border: 1px solid rgba(255,255,255,0.8);"
+          style="background: #f37443; border: 1px solid #f37443;"
         >
           Comenzar
         </a>
@@ -109,6 +110,8 @@ const languages = [
       if (y < 48) header!.removeAttribute("data-nav-concealed");
       else if (y > lastScrollY + 8) header!.setAttribute("data-nav-concealed", "true");
       else if (y < lastScrollY - 8) header!.removeAttribute("data-nav-concealed");
+      if (y > 60) header!.setAttribute("data-scrolled", "true");
+      else header!.removeAttribute("data-scrolled");
       lastScrollY = y;
     }
     function onScroll() {
@@ -196,6 +199,14 @@ const languages = [
 </script>
 
 <style>
+  /* Frosted dark bar when scrolled */
+  #site-header[data-scrolled] #site-nav {
+    background: rgba(10, 10, 10, 0.85);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    box-shadow: 0 1px 0 rgba(255,255,255,0.06), 0 8px 32px rgba(0,0,0,0.4);
+  }
+
   #nav-cta-btn {
     transition:
       background 0.25s cubic-bezier(0.22, 1, 0.36, 1),
@@ -203,8 +214,8 @@ const languages = [
       transform 0.15s cubic-bezier(0.22, 1, 0.36, 1);
   }
   #nav-cta-btn:hover {
-    background: rgba(255, 255, 255, 0.08) !important;
-    border-color: rgba(255, 255, 255, 1) !important;
+    background: #ed4c22 !important;
+    border-color: #ed4c22 !important;
   }
   #nav-cta-btn:active { transform: scale(0.98); }
 </style>
