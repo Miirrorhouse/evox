@@ -12,12 +12,6 @@ const logos = [
   { src: "/images/logos/Soho_House_logo.jpg",           alt: "Soho House",    large: false },
 ];
 
-const images = [
-  { src: "/images/Athletic-Woman-Close-Up_1Athletic Woman Close-Up.webp", alt: "Athletic woman close up" },
-  { src: "/images/nastuh-abootalebi-yWwob8kwOCk-unsplash_1nastuh-abootalebi-yWwob8kwOCk-unsplash.webp", alt: "Wellness activity" },
-  { src: "/images/Woman-with-Tennis-Racket_1Woman with Tennis Racket.webp", alt: "Woman with tennis racket" },
-  { src: "/images/nastuh-abootalebi-yWwob8kwOCk-unsplash_16960c292402437378098ab5374425a12_nastuh-abootalebi-yWwob8kwOCk-unsplash.webp", alt: "Athlete outdoors" },
-];
 
 const problems = [
   {
@@ -26,6 +20,7 @@ const problems = [
     bodyKey: "about.p1body",
     title: "Burnout silencioso",
     body: "Equipos funcionando en automático, con menos energía, foco y motivación.",
+    img: "/images/section3-burnout.jpg",
   },
   {
     num: "02",
@@ -33,6 +28,7 @@ const problems = [
     bodyKey: "about.p2body",
     title: "Desconexión humana",
     body: "Menos presencia. Menos colaboración real. Más distancia entre las personas.",
+    img: "/images/section3-desconexion.jpg",
   },
   {
     num: "03",
@@ -40,6 +36,7 @@ const problems = [
     bodyKey: "about.p3body",
     title: "Creatividad bloqueada",
     body: "Cuando el estrés domina, el rendimiento y las buenas ideas empiezan a desaparecer.",
+    img: "/images/section3-creatividad.jpg",
   },
   {
     num: "04",
@@ -47,6 +44,7 @@ const problems = [
     bodyKey: "about.p4body",
     title: "Cultura desgastada",
     body: "Las personas no abandonan empresas. Abandonan entornos donde dejaron de sentirse vivas.",
+    img: "/images/section3-cultura.jpg",
   },
 ];
 ---
@@ -100,7 +98,19 @@ const problems = [
     <!-- Problem grid -->
     <div data-stagger class="mt-16 grid grid-cols-1 gap-px bg-[#e8e8e8] border border-[#e8e8e8] rounded-2xl overflow-hidden sm:grid-cols-2">
       {problems.map((p) => (
-        <div class="group relative bg-white px-8 py-10 lg:px-10 lg:py-12 transition-colors duration-300 hover:bg-[#faf9f7]">
+        <div class="group relative bg-white transition-colors duration-300 hover:bg-[#faf9f7]">
+          <!-- Photo -->
+          <div class="overflow-hidden h-52 lg:h-60">
+            <img
+              src={p.img}
+              alt={p.title}
+              loading="lazy"
+              class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+            />
+          </div>
+
+          <!-- Text content -->
+          <div class="px-8 py-10 lg:px-10 lg:py-12">
           <!-- Number -->
           <span class="block text-[11px] font-bold tracking-[3px] uppercase text-[#ccc] mb-4">{p.num}</span>
 
@@ -122,63 +132,11 @@ const problems = [
           >
             {p.body}
           </p>
+          </div>
         </div>
       ))}
     </div>
 
   </div>
 
-  <!-- Image strip -->
-  <div class="relative mt-20 overflow-hidden" id="about-img-track-wrap">
-    <div
-      id="about-img-track"
-      class="flex gap-4 mx-auto will-change-transform"
-      style="width: max-content;"
-    >
-      {images.map((img) => (
-        <div
-          class="shrink-0 overflow-hidden rounded-2xl aspect-[3/4]"
-          style="width: calc((100vw - 3rem) * 0.295);"
-        >
-          <img
-            src={img.src}
-            alt={img.alt}
-            loading="lazy"
-            class="h-full w-full object-cover"
-          />
-        </div>
-      ))}
-    </div>
-  </div>
 </section>
-
-<script is:inline>
-  (function () {
-    var section = document.getElementById("about");
-    var track = document.getElementById("about-img-track");
-    if (!section || !track) return;
-
-    var ticking = false;
-    var TRAVEL = 120;
-
-    function applyParallax() {
-      var rect = section.getBoundingClientRect();
-      var viewH = window.innerHeight;
-      var progress = 1 - rect.bottom / (viewH + rect.height);
-      progress = Math.max(0, Math.min(1, progress));
-      var offset = (progress - 0.5) * TRAVEL;
-      track.style.transform = "translateX(" + offset + "px)";
-      ticking = false;
-    }
-
-    function onScroll() {
-      if (!ticking) {
-        requestAnimationFrame(applyParallax);
-        ticking = true;
-      }
-    }
-
-    window.addEventListener("scroll", onScroll, { passive: true });
-    applyParallax();
-  })();
-</script>
